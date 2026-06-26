@@ -1,0 +1,48 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_CONFIG=production
+      - SECRET_KEY=${SECRET_KEY:-dev-secret-key-change-in-production}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-jwt-dev-secret-change-in-production}
+      - DATABASE_URL=postgresql://confirmroi:${DB_PASSWORD:-confirmroi}@db:5432/confirmroi
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+    command: >
+      sh -c "flask --app wsgi db upgrade &&
+             python -m app.services.seed &&
+             gunicorn --bind 0.0.0.0:5000 --workers 4 wsgi:app"
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URL=http://localhost:5000/api
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_DB=confirmroi
+      - POSTGRES_USER=confirmroi
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-confirmroi}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U confirmroi"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata:

@@ -1,0 +1,33 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5100:5000"
+    environment:
+      - FLASK_CONFIG=production
+      - SECRET_KEY=${SECRET_KEY:-free-demo-secret-key-change-in-production}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-jwt-free-demo-secret-change-in-production}
+      - DATABASE_URL=sqlite:////app/data/confirmroi_demo_free.db
+      - DEMO_TIER=free
+      - DEFAULT_USER_TIER=free
+    volumes:
+      - ./backend:/app
+      - free_demo_data:/app/data
+    command: >
+      sh -c "mkdir -p /app/data &&
+             flask --app wsgi db upgrade &&
+             python -m app.services.seed &&
+             python -m app.services.demo_seed &&
+             gunicorn --bind 0.0.0.0:5000 --workers 4 wsgi:app"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    ports:
+      - "5174:80"
+    environment:
+      - VITE_API_URL=/api
+
+volumes:
+  free_demo_data:
