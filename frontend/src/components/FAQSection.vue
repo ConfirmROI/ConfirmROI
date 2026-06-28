@@ -8,10 +8,6 @@ const faqs = [
     a: "Yes. The free version is a complete, fully functional tool for a single manager to calculate and visualize ROI for their team. No trial limitations, no feature crippleware. It’s open source — you own it.",
   },
   {
-    q: 'Can I self-host the paid version?',
-    a: 'The paid version is available as a managed SaaS service. If you need on-prem deployment for the paid features, contact us about enterprise licensing.',
-  },
-  {
     q: "What’s the difference between system and custom value formulas?",
     a: 'System formulas are pre-built templates (Cost Savings, Revenue Generation, Time Saved, Risk Reduction) with proven formulas. Custom formulas let you define your own formula and assumptions for any type of value you want to measure.',
   },
@@ -22,6 +18,10 @@ const faqs = [
   {
     q: 'Can I contribute to the open-source project?',
     a: 'Absolutely. ConfirmROI is open source and we welcome contributions — new formulas, bug fixes, features, documentation. Check out our GitHub.',
+  },
+  {
+    q: 'Can I self-host the paid version?',
+    a: 'The paid version is available as a managed SaaS service. If you need on-prem deployment for the paid features, contact us about enterprise licensing.',
   },
   {
     q: 'Do I need to talk to a salesperson?',

@@ -17,7 +17,7 @@ const rows = [
   { feature: 'SSO', free: null, paid: 'Yes' },
   { feature: 'Export', free: 'CSV', paid: 'CSV + PDF + scheduled reports' },
   { feature: 'Support', free: 'Community', paid: 'Email + priority' },
-  { feature: 'License', free: 'MIT/Apache', paid: 'Commercial' },
+  { feature: 'License', free: 'MIT', paid: 'Commercial' },
 ]
 </script>
 
@@ -27,7 +27,7 @@ const rows = [
       <!-- Heading -->
       <div class="text-center max-w-2xl mx-auto">
         <h2 class="text-3xl sm:text-4xl font-bold text-primary-950">
-          Start free. Upgrade when you need more.
+          Self-host or let us manage it.
         </h2>
         <p class="mt-4 text-lg text-slate-600">
           The free version is fully functional for a single manager and team. The paid version adds
@@ -77,18 +77,18 @@ const rows = [
 
       <!-- CTAs below table -->
       <div class="mt-10 grid sm:grid-cols-2 gap-4 max-w-lg mx-auto">
-        <RouterLink
-          to="/register"
+        <a
+          href="https://github.com/ConfirmROI/ConfirmROI"
           class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-accent-600 text-white font-bold hover:bg-accent-700 transition-colors shadow-sm"
         >
-          Get Started Free
+          Self-Host Free
           <ArrowRight class="w-4 h-4" />
-        </RouterLink>
+        </a>
         <RouterLink
           to="/register"
           class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-primary-600 text-white font-bold hover:bg-primary-700 transition-colors shadow-sm"
         >
-          Choose a Plan
+          Let us manage it
           <ArrowRight class="w-4 h-4" />
         </RouterLink>
       </div>

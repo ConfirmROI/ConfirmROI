@@ -127,7 +127,7 @@ const systemAssumptions = [
               <TrendingUp class="w-6 h-6 text-primary-600" /> Overview
             </h2>
             <p class="text-gray-700 mb-3">
-              Engineering leaders struggle to prove the value of diffuse work — risk reduction, velocity improvements,
+              Engineering leaders struggle to prove the value of complex work — risk reduction, velocity improvements,
               enabler projects, keep-the-lights-on investments. Traditional ROI tools are built for sales and finance,
               not engineering. Spreadsheets are error-prone and hard to defend.
             </p>

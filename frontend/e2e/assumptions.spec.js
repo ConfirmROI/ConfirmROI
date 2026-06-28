@@ -20,7 +20,7 @@ async function loginAndGetToken() {
 
 async function createAssumption(key, label) {
   const ctx = await request.newContext()
-  const resp = await ctx.post('http://localhost:5174/api/archetypes/assumptions', {
+  const resp = await ctx.post('http://localhost:5174/api/formulas/assumptions', {
     data: { key, label, data_type: 'number', default_value: 0, description: '' },
     headers: { Authorization: `Bearer ${accessToken}` },
   })

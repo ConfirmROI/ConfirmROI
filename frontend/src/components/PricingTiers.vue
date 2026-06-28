@@ -63,7 +63,7 @@ const features = [
           Simple, per-seat pricing.
         </h2>
         <p class="mt-4 text-lg text-slate-300">
-          Self-host the open-source version for free, or let us run it for you. 
+          Self-host for free, or let us run it for you.
           Paid tiers add collaboration, multi-team dashboards, and enterprise features.
         </p>
       </div>

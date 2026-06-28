@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <section class="relative overflow-hidden bg-white">
+  <section class="relative overflow-hidden bg-primary-50">
     <!-- Decorative background -->
     <div class="absolute inset-0 -z-10">
       <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary-200/40 rounded-full blur-3xl"></div>
@@ -21,24 +21,24 @@ import { RouterLink } from 'vue-router'
           </h1>
           <p class="mt-6 text-lg text-slate-600 leading-relaxed max-w-xl">            
             Not every project’s impact can be derived from a single, tidy line item. When the value is 
-            diffuse (losses avoided, risks mitigated, productivity gained across teams) ConfirmROI helps you make 
+            multifaceted (losses avoided, risks mitigated, productivity gained across teams) ConfirmROI helps you make 
             the case with numbers instead of intuition.
           </p>
 
           <!-- CTAs -->
           <div class="mt-8 flex flex-col sm:flex-row gap-4">
-            <RouterLink
-              to="/register"
+            <a
+              href="https://github.com/ConfirmROI/ConfirmROI"
               class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary-600 text-white font-semibold hover:bg-primary-700 transition-colors shadow-sm"
             >
-              Get Started Free
+              Self-Host Free
               <ArrowRight class="w-4 h-4" />
-            </RouterLink>
+            </a>
             <a
               href="#pricing"
               class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white text-primary-700 font-semibold border border-slate-300 hover:border-primary-400 hover:bg-primary-50 transition-colors"
             >
-              View Paid Plans
+              Let us manage it
             </a>
           </div>
 
@@ -54,7 +54,7 @@ import { RouterLink } from 'vue-router'
             </span>
             <span class="inline-flex items-center gap-1.5 text-sm text-slate-600">
               <ShieldCheck class="w-4 h-4 text-accent-600" />
-              No credit card required
+              No signup wall
             </span>
           </div>
         </div>
@@ -121,7 +121,7 @@ import { RouterLink } from 'vue-router'
                     <p class="text-lg font-bold text-primary-600">$2.4M</p>
                   </div>
                   <div class="bg-white rounded-xl border border-gray-200 p-3">
-                    <p class="text-xs text-gray-500 mb-0.5">Archetypes</p>
+                    <p class="text-xs text-gray-500 mb-0.5">Value Formulas</p>
                     <p class="text-lg font-bold text-gray-900">8</p>
                   </div>
                 </div>

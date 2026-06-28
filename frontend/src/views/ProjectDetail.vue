@@ -53,7 +53,7 @@ const roiSummary = computed(() => {
   let grossAnnual = 0
   let hasData = false
   for (const pa of projectArchetypes.value) {
-    if (!pa?.archetype?.formula || !pa?.assumption_values) continue
+    if (!pa?.formula?.formula || !pa?.assumption_values) continue
     const vars = {}
     for (const av of pa.assumption_values) {
       const key = av.assumption?.key
@@ -64,7 +64,7 @@ const roiSummary = computed(() => {
     try {
       const keys = Object.keys(vars)
       const values = keys.map(k => vars[k])
-      const result = new Function(...keys, `return ${pa.archetype.formula}`)(...values)
+      const result = new Function(...keys, `return ${pa.formula.formula}`)(...values)
       if (typeof result === 'number' && isFinite(result)) {
         grossAnnual += result
         hasData = true
@@ -296,9 +296,9 @@ async function handleDelete() {
             <div class="flex items-center justify-between mb-3">
               <div>
                 <h3 class="font-semibold text-gray-900">
-                  <router-link :to="`/formulas`" class="hover:text-primary-600 transition" @click.stop>{{ pa.archetype?.name || 'Archetype' }}</router-link>
+                  <router-link :to="`/formulas`" class="hover:text-primary-600 transition" @click.stop>{{ pa.formula?.name || 'Value Formula' }}</router-link>
                 </h3>
-                <p class="text-sm text-gray-600 font-mono bg-gray-100 rounded-md px-3 py-2 mt-2">{{ pa.archetype?.formula }}</p>
+                <p class="text-sm text-gray-600 font-mono bg-gray-100 rounded-md px-3 py-2 mt-2">{{ pa.formula?.formula }}</p>
               </div>
               <div class="flex items-center gap-3">
                 <router-link

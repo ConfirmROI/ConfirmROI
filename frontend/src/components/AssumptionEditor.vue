@@ -31,7 +31,7 @@ watch(
 
 const liveGrossAnnual = computed(() => {
   const pa = props.projectArchetype
-  if (!pa?.archetype?.formula || !pa?.assumption_values) return null
+  if (!pa?.formula?.formula || !pa?.assumption_values) return null
   const vars = {}
   for (const av of pa.assumption_values) {
     const key = av.assumption?.key
@@ -43,7 +43,7 @@ const liveGrossAnnual = computed(() => {
   try {
     const keys = Object.keys(vars)
     const values = keys.map(k => vars[k])
-    const result = new Function(...keys, `return ${pa.archetype.formula}`)(...values)
+    const result = new Function(...keys, `return ${pa.formula.formula}`)(...values)
     return typeof result === 'number' && isFinite(result) ? result : null
   } catch {
     return null

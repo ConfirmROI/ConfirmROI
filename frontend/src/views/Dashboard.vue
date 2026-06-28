@@ -23,6 +23,8 @@ function logout() {
 const sidebarOpen = ref(false)
 const selectedTeamId = ref(null)
 const dateFilter = reactive({ start: '', end: '' })
+let skipWatch = true
+let loadRequestId = 0
 
 const isPaid = computed(() => auth.userTier === 'paid')
 
@@ -31,10 +33,12 @@ const totalRoi = computed(() => {
 })
 
 async function loadDashboard() {
+  const requestId = ++loadRequestId
   const dateRange = (dateFilter.start || dateFilter.end)
     ? { start: dateFilter.start || null, end: dateFilter.end || null }
     : null
   await projectsStore.fetchProjects(selectedTeamId.value, dateRange)
+  if (requestId !== loadRequestId) return
   await dashboardStore.fetchArchetypes()
   await dashboardStore.fetchProjectRoi(projectsStore.projects)
 }
@@ -44,12 +48,13 @@ onMounted(async () => {
   const myTeams = teamsStore.teams.filter(t => t.manager_user_id === auth.user?.id)
   if (myTeams.length > 0) {
     selectedTeamId.value = myTeams[0].id
-  } else {
-    await loadDashboard()
   }
+  skipWatch = false
+  await loadDashboard()
 })
 
 watch(selectedTeamId, async () => {
+  if (skipWatch) return
   await loadDashboard()
 })
 
@@ -164,7 +169,7 @@ function clearDateFilter() {
             <p class="text-2xl font-bold text-primary-600">${{ totalRoi.toLocaleString() }}</p>
           </div>
           <div class="bg-white rounded-xl border border-gray-200 p-5">
-            <p class="text-sm text-gray-500 mb-1">Archetypes</p>
+            <p class="text-sm text-gray-500 mb-1">Value Formulas</p>
             <p class="text-2xl font-bold text-gray-900">{{ dashboardStore.archetypes.length }}</p>
           </div>
         </div>

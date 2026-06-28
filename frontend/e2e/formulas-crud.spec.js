@@ -20,7 +20,7 @@ async function loginAndGetToken() {
 
 async function createAssumption(key, label) {
   const ctx = await request.newContext()
-  const resp = await ctx.post('http://localhost:5174/api/archetypes/assumptions', {
+  const resp = await ctx.post('http://localhost:5174/api/formulas/assumptions', {
     data: { key, label, data_type: 'number', default_value: 10, description: 'E2E test assumption' },
     headers: { Authorization: `Bearer ${accessToken}` },
   })
@@ -31,7 +31,7 @@ async function createAssumption(key, label) {
 
 async function getAllAssumptions() {
   const ctx = await request.newContext()
-  const resp = await ctx.get('http://localhost:5174/api/archetypes/assumptions', {
+  const resp = await ctx.get('http://localhost:5174/api/formulas/assumptions', {
     headers: { Authorization: `Bearer ${accessToken}` },
   })
   const data = await resp.json()
