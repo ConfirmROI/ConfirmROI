@@ -30,10 +30,13 @@ def create_app(config=None):
     try:
         import confirmroi_enterprise
         confirmroi_enterprise.register_services(app)
-    except ImportError:
-        pass
+        app.logger.info("Enterprise services registered successfully")
+    except ImportError as e:
+        app.logger.warning(f"Enterprise services not available (ImportError): {e}")
     except Exception as e:
         app.logger.warning(f"Enterprise services failed to initialize: {e}")
+        import traceback
+        app.logger.warning(traceback.format_exc())
 
     with app.app_context():
         from app import models  # noqa: F401 - ensure models are registered

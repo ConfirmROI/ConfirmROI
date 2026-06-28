@@ -61,7 +61,7 @@ const features = [
 </script>
 
 <template>
-  <section id="value-formulas" class="py-20 lg:py-28 bg-primary-50" style="background: linear-gradient(to top, white, #CCDDFF)">
+  <section id="value-formulas" class="py-20 lg:py-28 bg-primary-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <!-- Left: Narrative -->
@@ -77,8 +77,8 @@ const features = [
             costly outage?
           </p>
           <p class="mt-4 text-lg text-slate-600 leading-relaxed">
-            That’s where <strong class="text-primary-900">Value Formulas</strong> come in. Each formula is built from
-            <strong class="text-primary-900">Collaborative Assumptions</strong>, editable variables that capture the
+            That’s where <router-link to="/docs/free#formulas" class="font-semibold text-primary-900 hover:underline">Value Formulas</router-link> come in. Each formula is built from
+            <router-link to="/docs/free#assumptions" class="font-semibold text-primary-900 hover:underline">Collaborative Assumptions</router-link>, editable variables that capture the
             real drivers of value for your specific situation. Start with a proven template or build your own from
             scratch.
           </p>

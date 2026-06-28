@@ -19,7 +19,7 @@ const bullets = [
   },
   {
     icon: Scale,
-    title: 'MIT/Apache licensed',
+    title: 'MIT licensed',
     description: 'Use it freely, fork it, build on it',
   },
 ]

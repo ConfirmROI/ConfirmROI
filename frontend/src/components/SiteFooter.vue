@@ -69,7 +69,7 @@ const columns = [
       <!-- Bottom bar -->
       <div class="mt-12 pt-8 border-t border-primary-800 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p class="text-sm text-slate-400">
-          &copy; {{ new Date().getFullYear() }} ConfirmROI. MIT/Apache licensed.
+          &copy; {{ new Date().getFullYear() }} ConfirmROI. MIT licensed.
         </p>
       </div>
     </div>

@@ -13,7 +13,7 @@ export const useAssumptionsStore = defineStore('assumptions', {
     async fetchAssumptions() {
       this.loading = true
       try {
-        const resp = await apiClient.get('/archetypes/assumptions')
+        const resp = await apiClient.get('/formulas/assumptions')
         this.assumptions = resp.data
       } catch (err) {
         this.error = err.response?.data?.error || 'Failed to fetch assumptions'
@@ -24,7 +24,7 @@ export const useAssumptionsStore = defineStore('assumptions', {
 
     async fetchArchetypes() {
       try {
-        const resp = await apiClient.get('/archetypes')
+        const resp = await apiClient.get('/formulas')
         this.archetypes = resp.data
       } catch (err) {
         this.error = err.response?.data?.error || 'Failed to fetch archetypes'
@@ -33,7 +33,7 @@ export const useAssumptionsStore = defineStore('assumptions', {
 
     async createAssumption(data) {
       try {
-        const resp = await apiClient.post('/archetypes/assumptions', data)
+        const resp = await apiClient.post('/formulas/assumptions', data)
         this.assumptions.push(resp.data)
         return resp.data
       } catch (err) {
@@ -44,7 +44,7 @@ export const useAssumptionsStore = defineStore('assumptions', {
 
     async updateAssumption(assumptionId, data) {
       try {
-        const resp = await apiClient.put(`/archetypes/assumptions/${assumptionId}`, data)
+        const resp = await apiClient.put(`/formulas/assumptions/${assumptionId}`, data)
         const idx = this.assumptions.findIndex((a) => a.id === assumptionId)
         if (idx !== -1) this.assumptions[idx] = resp.data
         return resp.data
@@ -56,7 +56,7 @@ export const useAssumptionsStore = defineStore('assumptions', {
 
     async deleteAssumption(assumptionId) {
       try {
-        await apiClient.delete(`/archetypes/assumptions/${assumptionId}`)
+        await apiClient.delete(`/formulas/assumptions/${assumptionId}`)
         this.assumptions = this.assumptions.filter((a) => a.id !== assumptionId)
         return true
       } catch (err) {

@@ -17,7 +17,7 @@ export const useDashboardStore = defineStore('dashboard', {
     async fetchArchetypes() {
       this.loading = true
       try {
-        const resp = await apiClient.get('/archetypes')
+        const resp = await apiClient.get('/formulas')
         this.archetypes = resp.data
       } catch (err) {
         this.error = err.response?.data?.error || 'Failed to fetch archetypes'
@@ -28,7 +28,7 @@ export const useDashboardStore = defineStore('dashboard', {
 
     async fetchUsage() {
       try {
-        const resp = await apiClient.get('/archetypes/usage')
+        const resp = await apiClient.get('/formulas/usage')
         this.usageStats = resp.data
         return resp.data
       } catch (err) {
@@ -39,7 +39,7 @@ export const useDashboardStore = defineStore('dashboard', {
 
     async fetchArchetype(id) {
       try {
-        const resp = await apiClient.get(`/archetypes/${id}`)
+        const resp = await apiClient.get(`/formulas/${id}`)
         return resp.data
       } catch (err) {
         this.error = err.response?.data?.error || 'Failed to fetch archetype'
@@ -49,7 +49,7 @@ export const useDashboardStore = defineStore('dashboard', {
 
     async createArchetype(data) {
       try {
-        const resp = await apiClient.post('/archetypes', data)
+        const resp = await apiClient.post('/formulas', data)
         this.archetypes.push(resp.data)
         return resp.data
       } catch (err) {
@@ -60,7 +60,7 @@ export const useDashboardStore = defineStore('dashboard', {
 
     async deleteArchetype(id) {
       try {
-        await apiClient.delete(`/archetypes/${id}`)
+        await apiClient.delete(`/formulas/${id}`)
         this.archetypes = this.archetypes.filter((a) => a.id !== id)
         return true
       } catch (err) {
@@ -71,7 +71,7 @@ export const useDashboardStore = defineStore('dashboard', {
 
     async updateArchetype(id, data) {
       try {
-        const resp = await apiClient.put(`/archetypes/${id}`, data)
+        const resp = await apiClient.put(`/formulas/${id}`, data)
         const idx = this.archetypes.findIndex((a) => a.id === id)
         if (idx !== -1) this.archetypes[idx] = resp.data
         return resp.data
@@ -83,7 +83,7 @@ export const useDashboardStore = defineStore('dashboard', {
 
     async assignArchetype(projectId, archetypeId) {
       try {
-        const resp = await apiClient.post(`/projects/${projectId}/archetypes`, { archetype_id: archetypeId })
+        const resp = await apiClient.post(`/projects/${projectId}/formulas`, { archetype_id: archetypeId })
         this.projectArchetypes.push(resp.data)
         return resp.data
       } catch (err) {
@@ -94,7 +94,7 @@ export const useDashboardStore = defineStore('dashboard', {
 
     async unassignArchetype(projectId, paId) {
       try {
-        await apiClient.delete(`/projects/${projectId}/archetypes/${paId}`)
+        await apiClient.delete(`/projects/${projectId}/formulas/${paId}`)
         this.projectArchetypes = this.projectArchetypes.filter((pa) => pa.id !== paId)
         return true
       } catch (err) {
@@ -105,7 +105,7 @@ export const useDashboardStore = defineStore('dashboard', {
 
     async fetchProjectArchetypes(projectId) {
       try {
-        const resp = await apiClient.get(`/projects/${projectId}/archetypes`)
+        const resp = await apiClient.get(`/projects/${projectId}/formulas`)
         this.projectArchetypes = resp.data
         return resp.data
       } catch (err) {
@@ -117,7 +117,7 @@ export const useDashboardStore = defineStore('dashboard', {
     async updateAssumptionValue(projectId, paId, assumptionId, value) {
       try {
         const resp = await apiClient.put(
-          `/projects/${projectId}/archetypes/${paId}/assumptions/${assumptionId}`,
+          `/projects/${projectId}/formulas/${paId}/assumptions/${assumptionId}`,
           { value }
         )
         return resp.data
@@ -129,7 +129,7 @@ export const useDashboardStore = defineStore('dashboard', {
 
     async calculateRoi(projectId, paId) {
       try {
-        const resp = await apiClient.post(`/projects/${projectId}/archetypes/${paId}/calculate`)
+        const resp = await apiClient.post(`/projects/${projectId}/formulas/${paId}/calculate`)
         this.roiResults[paId] = resp.data
         return resp.data
       } catch (err) {
@@ -140,7 +140,7 @@ export const useDashboardStore = defineStore('dashboard', {
 
     async getLatestRoi(projectId, paId) {
       try {
-        const resp = await apiClient.get(`/projects/${projectId}/archetypes/${paId}/roi`)
+        const resp = await apiClient.get(`/projects/${projectId}/formulas/${paId}/roi`)
         this.roiResults[paId] = resp.data
         return resp.data
       } catch (err) {
@@ -153,7 +153,7 @@ export const useDashboardStore = defineStore('dashboard', {
       this.projectRoiBreakdown = {}
       for (const project of projects) {
         try {
-          const resp = await apiClient.get(`/projects/${project.id}/archetypes`)
+          const resp = await apiClient.get(`/projects/${project.id}/formulas`)
           const pas = resp.data || []
           let total = 0
           const breakdown = {}
@@ -161,7 +161,7 @@ export const useDashboardStore = defineStore('dashboard', {
             const roi = await this.getLatestRoi(project.id, pa.id)
             if (roi && typeof roi.roi_value === 'number') {
               total += roi.roi_value
-              const name = pa.archetype?.name || 'Unknown'
+              const name = pa.formula?.name || 'Unknown'
               breakdown[name] = (breakdown[name] || 0) + roi.roi_value
             }
           }

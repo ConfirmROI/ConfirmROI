@@ -95,7 +95,7 @@ const planFeatures = [
               <TrendingUp class="w-6 h-6 text-primary-600" /> Overview
             </h2>
             <p class="text-gray-700 mb-3">
-              Engineering leaders struggle to prove the value of diffuse work — risk reduction, velocity improvements,
+              Engineering leaders struggle to prove the value of complex work — risk reduction, velocity improvements,
               enabler projects, keep-the-lights-on investments. ConfirmROI solves this with transparent, defensible
               formulas instead of gut feelings.
             </p>

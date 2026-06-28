@@ -20,7 +20,7 @@ async function loginAndGetToken() {
 
 async function createAssumptionViaAPI(key, label, dataType, defaultValue) {
   const ctx = await request.newContext()
-  const resp = await ctx.post('http://localhost:5174/api/archetypes/assumptions', {
+  const resp = await ctx.post('http://localhost:5174/api/formulas/assumptions', {
     data: {
       key,
       label,

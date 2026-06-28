@@ -6,8 +6,7 @@ import { Menu, X, TrendingUp } from 'lucide-vue-next'
 const mobileOpen = ref(false)
 
 const navLinks = [
-  { label: 'Features', href: '#value-formulas' },
-  { label: 'How It Works', href: '#how-it-works' },
+  { label: 'Workflow', href: '#workflow' },
   { label: 'Pricing', href: '#pricing' },
   { label: 'Docs', to: '/docs' },
 ]
@@ -54,12 +53,12 @@ function closeMobile() {
           <RouterLink to="/login" class="text-sm font-medium text-slate-600 hover:text-primary-700 transition-colors">
             Sign In
           </RouterLink>
-          <RouterLink
-            to="/register"
+          <a
+            href="https://github.com/ConfirmROI/ConfirmROI"
             class="inline-flex items-center px-4 py-2 rounded-lg bg-primary-600 text-white text-sm font-semibold hover:bg-primary-700 transition-colors shadow-sm"
           >
-            Get Started Free
-          </RouterLink>
+            Download
+          </a>
         </div>
 
         <!-- Mobile toggle -->
@@ -98,13 +97,13 @@ function closeMobile() {
         <RouterLink to="/login" class="block text-sm font-medium text-slate-600 hover:text-primary-700" @click="closeMobile">
           Sign In
         </RouterLink>
-        <RouterLink
-          to="/register"
+        <a
+          href="https://github.com/ConfirmROI/ConfirmROI"
           class="block text-center px-4 py-2 rounded-lg bg-primary-600 text-white text-sm font-semibold"
           @click="closeMobile"
         >
-          Get Started Free
-        </RouterLink>
+          Download
+        </a>
       </div>
     </div>
   </nav>
